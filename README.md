@@ -1,4 +1,5 @@
 # Onboarding-UI
+Node version: v10.4.0
 
 ## Running the UI Portion of Lithium University Onboarding Program ##
 1. Navigate to the project's folder in a terminal window.

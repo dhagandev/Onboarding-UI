@@ -8,9 +8,13 @@ function getTimeline() {
     xhttp.onreadystatechange = function () {
     	if (xhttp.readyState == xhttp.DONE) {
         	let raw = xhttp.responseText;
+        	if (raw == "") {
+        		raw = "An error has occurred. Please contact your administration.";
+        	}
             document.getElementById('rawJson').innerHTML = raw;
         }
         else {
+        	console.log("xhttpProcess " + xhttp.readyState);
         	document.getElementById('rawJson').innerHTML = "Retrieving information, please wait!";
         }
     }

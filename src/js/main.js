@@ -7,7 +7,6 @@ const cors = require('cors');
 const express = require('express');
 
 let app = express();
-app.use(cors());
 
 app.get('/', (request, response) => {
 	response.set('Content-Type', 'text/html');

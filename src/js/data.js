@@ -7,20 +7,20 @@ function getTimeline() {
 
     xhttp.onreadystatechange = function () {
     	if (xhttp.readyState == xhttp.DONE) {
-        	let raw = xhttp.responseText;
         	if (xhttp.status == 200) {
-        		document.getElementById('rawJson').innerHTML = raw;
+        		document.getElementById('rawJson').innerHTML = xhttp.responseText;
         	}
         	else {
         		document.getElementById('rawJson').innerHTML = "An error has occurred. Please contact your administration.";
         	}
         }
         else {
-        	console.log("xhttpProcess " + xhttp.readyState);
-        	document.getElementById('rawJson').innerHTML = "Retrieving information, please wait!";
+	        document.getElementById('rawJson').innerHTML = "Retrieving information, please wait!";
         }
     }
 
     xhttp.open("GET", `http://${serverHostname}:${serverPort}/${timelinePath}`, true);
     xhttp.send();
 }
+
+document.addEventListener('DOMContentLoaded', getTimeline());

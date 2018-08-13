@@ -3,7 +3,6 @@ const express = require('express');
 const hostname = '127.0.0.1';
 const port = 9000;
 
-
 let app = express();
 
 app.get('/', (request, response) => {

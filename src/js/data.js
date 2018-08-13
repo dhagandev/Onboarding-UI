@@ -22,5 +22,3 @@ function getTimeline() {
     xhttp.open("GET", `http://${serverHostname}:${serverPort}/${timelinePath}`, true);
     xhttp.send();
 }
-
-document.addEventListener('DOMContentLoaded', getTimeline());

@@ -1,9 +1,8 @@
-const http = require('http');
 const fs = require('fs');
+const express = require('express');
 const hostname = '127.0.0.1';
 const port = 9000;
 
-const express = require('express');
 
 let app = express();
 

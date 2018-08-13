@@ -3,7 +3,6 @@ const fs = require('fs');
 const hostname = '127.0.0.1';
 const port = 9000;
 
-const cors = require('cors');
 const express = require('express');
 
 let app = express();

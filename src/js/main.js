@@ -14,10 +14,34 @@ app.get('/', (request, response) => {
 });
 
 app.get('/js/data.js', (request, response) => {
-	response.set('Content-Type', 'text/html');
+	response.set('Content-Type', 'text/javascript');
 	fs.readFile('./src/js/data.js', function (err, js) {
 	    if (err) throw err;
    		response.send(js);
+	});
+});
+
+app.get('/general.css', (request, response) => {
+	response.set('Content-Type', 'text/css');
+	fs.readFile('./src/css/general.css', function (err, styles) {
+	    if (err) throw err;
+   		response.send(styles);
+	});
+});
+
+app.get('/header.css', (request, response) => {
+	response.set('Content-Type', 'text/css');
+	fs.readFile('./src/css/header.css', function (err, styles) {
+	    if (err) throw err;
+   		response.send(styles);
+	});
+});
+
+app.get('/timeline.css', (request, response) => {
+	response.set('Content-Type', 'text/css');
+	fs.readFile('./src/css/timeline.css', function (err, styles) {
+	    if (err) throw err;
+   		response.send(styles);
 	});
 });
 

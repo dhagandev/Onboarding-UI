@@ -2,10 +2,13 @@
 	<head>
 		<title>Lithium Onboarding</title>
 		<script src="js/data.js"></script>
+		<link rel="stylesheet" type="text/css" href="general.css">
+		<link rel="stylesheet" type="text/css" href="header.css">
+		<link rel="stylesheet" type="text/css" href="timeline.css">
 	</head>
 	<body onload="getTimeline()">
-		<div>Hello World!<div>
-		<button onclick="getTimeline()">Get Timeline</button>
-		<div id="tweetTable"/>
+		<div id="labHeader">Lab for Dana</div>
+		<button id="timelineButton" class="button" onclick="getTimeline()">Get Timeline</button>
+		<div id="tweetTable" class="tweetTable"/>
 	</body>
 </html>

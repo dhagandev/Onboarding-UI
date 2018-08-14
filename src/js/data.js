@@ -2,21 +2,35 @@ const serverHostname = 'localhost';
 const serverPort = 8080;
 const timelinePath = 'api/1.0/twitter/timeline';
 
+const month = new Array();
+month[0] = "Jan";
+month[1] = "Feb";
+month[2] = "Mar";
+month[3] = "Apr";
+month[4] = "May";
+month[5] = "Jun";
+month[6] = "Jul";
+month[7] = "Aug";
+month[8] = "Sep";
+month[9] = "Oct";
+month[10] = "Nov";
+month[11] = "Dec";
+
 function getTimeline() {
 	let xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
     	if (xhttp.readyState == xhttp.DONE) {
         	if (xhttp.status == 200) {
-                document.getElementById('tweetTable').innerHTML = "";
+                document.getElementsByClassName("tweetTable").innerHTML = "";
                 handleData(xhttp.responseText);
         	}
         	else {
-        		document.getElementById('tweetTable').innerHTML = "An error has occurred. Please contact your administration.";
+        		document.getElementsByClassName("tweetTable").innerHTML = "An error has occurred. Please contact your administration.";
         	}
         }
         else {
-	        document.getElementById('tweetTable').innerHTML = "Retrieving information, please wait!";
+	        document.getElementsByClassName("tweetTable").innerHTML = "Retrieving information, please wait!";
         }
     }
 
@@ -26,18 +40,18 @@ function getTimeline() {
 
 function handleData(data) {
     let dataObj = JSON.parse(data);
-    let tweetTable = document.getElementById("tweetTable");
+    let tweetTable = document.getElementsByClassName("tweetTable")[0];
 
     for (i = 0; i < dataObj.length; i++) {
         let tweetRow = document.createElement("div");
         tweetRow.setAttribute("class", "tweetRow");
 
-        if (i % 2 == 0) {
-            tweetRow.style.backgroundColor = "#e8f5fd";
-        }
-        else {
-            tweetRow.style.backgroundColor = "#e9e9e9";
-        }
+        // if (i % 2 == 0) {
+        //     tweetRow.style.backgroundColor = "#e8f5fd";
+        // }
+        // else {
+        //     tweetRow.style.backgroundColor = "#e9e9e9";
+        // }
 
         let obj = dataObj[i];
         let user = obj.user;
@@ -54,14 +68,20 @@ function handleData(data) {
 }
 
 function createUser(user) {
-    let userInfo = document.createElement("span");
+    let userInfo = document.createElement("div");
     userInfo.setAttribute("class", "userInfo");
 
     let userImg = document.createElement("img");
+    userImg.setAttribute("class", "userImg");
     userImg.src = user.profileImageUrl;
 
-    let userName = document.createTextNode(user.name);
-    let userHandle = document.createTextNode(user.twitterHandle);
+    let userName = document.createElement("div");
+    userName.setAttribute("class", "userName");
+    userName.innerHTML = user.name;
+
+    let userHandle = document.createElement("div");
+    userHandle.setAttribute("class", "userHandle");
+    userHandle.innerHTML = user.twitterHandle;
 
     userInfo.appendChild(userImg);
     userInfo.appendChild(userName);
@@ -73,16 +93,20 @@ function createUser(user) {
 function createTweet(obj) {
     let tweetInfo = document.createElement("div");
     tweetInfo.setAttribute("class", "tweetInfo");
+    tweetInfo.setAttribute("onclick", "window.open('" + obj.link + "', '_blank');");
 
-    let date = document.createTextNode(new Date(obj.createdAt));
-    let message = document.createTextNode(obj.message);
-    let link = document.createElement("a");
-    link.setAttribute("href", obj.link);
-    link.setAttribute("target", "_blank");
+    let fullDate = new Date(obj.createdAt);
+    let parsedDate = month[fullDate.getMonth()] + " " + fullDate.getDate();
+    let date = document.createElement("div");
+    date.setAttribute("class", "date");
+    date.innerHTML = parsedDate;
 
-    link.appendChild(message);
+    let message = document.createElement("div");
+    message.setAttribute("class", "message");
+    message.innerHTML = obj.message;
+
     tweetInfo.appendChild(date);
-    tweetInfo.appendChild(link);
+    tweetInfo.appendChild(message);
 
     return tweetInfo;
 }

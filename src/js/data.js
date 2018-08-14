@@ -32,31 +32,18 @@ function handleData(data) {
         let tweetRow = document.createElement("div");
         tweetRow.setAttribute("id", "tweetRow");
 
+        if (i % 2 == 0) {
+            tweetRow.style.backgroundColor = "#e8f5fd";
+        }
+        else {
+            tweetRow.style.backgroundColor = "#e9e9e9";
+        }
+
         let obj = dataObj[i];
         let user = obj.user;
         
-        // Create User
-        let userInfo = document.createElement("span");
-        userInfo.setAttribute("id", "userInfo");
-        let userImg = document.createElement("img");
-        userImg.src = user.profileImageUrl;
-        let userName = document.createTextNode(user.name);
-        let userHandle = document.createTextNode(user.twitterHandle);
-        userInfo.appendChild(userImg);
-        userInfo.appendChild(userName);
-        userInfo.appendChild(userHandle);
-
-        // Create Tweet
-        let tweetInfo = document.createElement("div");
-        tweetInfo.setAttribute("id", "tweetInfo");
-        let date = document.createTextNode(new Date(obj.createdAt));
-        let message = document.createTextNode(obj.message);
-        let link = document.createElement("a");
-        link.setAttribute("href", obj.link);
-        link.setAttribute("target", "_blank");
-        link.appendChild(message);
-        tweetInfo.appendChild(date);
-        tweetInfo.appendChild(link);
+        let userInfo = createUser(user);
+        let tweetInfo = createTweet(obj);
 
         tweetRow.appendChild(userInfo);
         tweetRow.appendChild(tweetInfo);
@@ -64,4 +51,38 @@ function handleData(data) {
         tweetTable.appendChild(tweetRow);
     }
 
+}
+
+function createUser(user) {
+    let userInfo = document.createElement("span");
+    userInfo.setAttribute("id", "userInfo");
+
+    let userImg = document.createElement("img");
+    userImg.src = user.profileImageUrl;
+
+    let userName = document.createTextNode(user.name);
+    let userHandle = document.createTextNode(user.twitterHandle);
+
+    userInfo.appendChild(userImg);
+    userInfo.appendChild(userName);
+    userInfo.appendChild(userHandle);
+
+    return userInfo;
+}
+
+function createTweet(obj) {
+    let tweetInfo = document.createElement("div");
+    tweetInfo.setAttribute("id", "tweetInfo");
+
+    let date = document.createTextNode(new Date(obj.createdAt));
+    let message = document.createTextNode(obj.message);
+    let link = document.createElement("a");
+    link.setAttribute("href", obj.link);
+    link.setAttribute("target", "_blank");
+
+    link.appendChild(message);
+    tweetInfo.appendChild(date);
+    tweetInfo.appendChild(link);
+
+    return tweetInfo;
 }

@@ -26,10 +26,12 @@ function getTimeline() {
                 handleData(xhttp.responseText);
         	}
         	else {
+                console.log("An error has occurred. Please contact your administration. " + xhttp.status);
         		document.getElementsByClassName("tweetTable").innerHTML = "An error has occurred. Please contact your administration.";
         	}
         }
         else {
+            console.log("Retrieving information, please wait! " + xhttp.readyState);
 	        document.getElementsByClassName("tweetTable").innerHTML = "Retrieving information, please wait!";
         }
     }
@@ -39,19 +41,14 @@ function getTimeline() {
 }
 
 function handleData(data) {
+    console.log("Handling data");
     let dataObj = JSON.parse(data);
     let tweetTable = document.getElementsByClassName("tweetTable")[0];
+    tweetTable.innerHTML = "";
 
     for (i = 0; i < dataObj.length; i++) {
         let tweetRow = document.createElement("div");
         tweetRow.setAttribute("class", "tweetRow");
-
-        // if (i % 2 == 0) {
-        //     tweetRow.style.backgroundColor = "#e8f5fd";
-        // }
-        // else {
-        //     tweetRow.style.backgroundColor = "#e9e9e9";
-        // }
 
         let obj = dataObj[i];
         let user = obj.user;

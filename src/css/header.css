@@ -1,4 +1,10 @@
+.header {
+	width: 90%;
+	margin: auto;
+}
+
 #labHeader {
+	margin-top: 20px;
 	text-align: center;
 	font-family: "Verdana";
 	font-weight: bold;
@@ -6,5 +12,7 @@
 }
 
 #timelineButton {
-	margin-left: 85%
+	width: 110px;
+	position: relative;
+	left: calc(100% - 110px);
 }

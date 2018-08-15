@@ -110,7 +110,6 @@ function createUser(user) {
 function createTweet(obj) {
     let tweetInfo = document.createElement("div");
     tweetInfo.setAttribute("class", "tweetInfo");
-    tweetInfo.setAttribute("onclick", "window.open('" + obj.link + "', '_blank');");
 
     let fullDate = new Date(obj.createdAt);
     let parsedDate = month[fullDate.getMonth()] + " " + fullDate.getDate();
@@ -122,8 +121,13 @@ function createTweet(obj) {
     message.setAttribute("class", "message");
     message.innerHTML = obj.message;
 
+    let link = document.createElement("a");
+    link.setAttribute("href", obj.link);
+    link.setAttribute("target", "_blank");
+
+    link.appendChild(message);
     tweetInfo.appendChild(date);
-    tweetInfo.appendChild(message);
+    tweetInfo.appendChild(link);
 
     return tweetInfo;
 }

@@ -10,7 +10,6 @@
 .tweetRow {
 	padding-top: 10px;
 	padding-bottom: 10px;
-	display: table;
 	width: 100%
 }
 
@@ -23,7 +22,7 @@
 
 .userInfo {
 	text-align: center;
-	display: table-cell;
+	display: inline-block;
 	width: 15%;
     vertical-align: middle;
 }
@@ -44,7 +43,7 @@
 
 .tweetInfo {
 	margin-left: auto;
-	display: table-cell;
+	display: inline-block;
 	width: auto;
     vertical-align: middle;
 }

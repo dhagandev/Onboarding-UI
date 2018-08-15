@@ -1,15 +1,12 @@
 .tweetTable {
-	border-style: solid;
-	border-width: 1px;
+	border: solid 1px;
 	width: 90%;
-	margin: auto;
-	margin-top: 8px;
+	margin: 8px auto auto auto;
 	background: #e8f5fd;
 }
 
 .tweetRow {
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding: 10px 0px 10px 0px;
 	width: 100%
 }
 

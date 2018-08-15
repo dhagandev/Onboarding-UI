@@ -19,6 +19,11 @@ month[11] = "Dec";
 function getTimeline() {
     let xhttp = new XMLHttpRequest();
 
+    let tableList = document.getElementsByClassName("tweetTable");
+    for (i = 0; i < tableList.length; i++) {
+        document.body.removeChild(tableList[i]);
+    }
+
     let tweetTable = document.createElement("div");
     tweetTable.setAttribute("class", "tweetTable");
     document.body.appendChild(tweetTable);

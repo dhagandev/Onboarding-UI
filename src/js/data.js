@@ -26,18 +26,38 @@ function getTimeline() {
                 handleData(xhttp.responseText);
         	}
         	else {
-                console.log("An error has occurred. Please contact your administration. " + xhttp.status);
-        		document.getElementsByClassName("tweetTable").innerHTML = "An error has occurred. Please contact your administration.";
+                errorMessage();
         	}
         }
         else {
-            console.log("Retrieving information, please wait! " + xhttp.readyState);
-	        document.getElementsByClassName("tweetTable").innerHTML = "Retrieving information, please wait!";
+            waitMessage();
         }
     }
 
     xhttp.open("GET", `http://${serverHostname}:${serverPort}/${timelinePath}`, true);
     xhttp.send();
+}
+
+function errorMessage() {
+    let tweetTable = document.getElementsByClassName("tweetTable")[0];
+    tweetTable.innerHTML = "";
+
+    let error = document.createElement("div");
+    error.setAttribute("class", "error");
+    error.innerHTML = "An error has occurred. Please contact your administration.";
+
+    tweetTable.appendChild(error);
+}
+
+function waitMessage() {
+    let tweetTable = document.getElementsByClassName("tweetTable")[0];
+    tweetTable.innerHTML = "";
+
+    let wait = document.createElement("div");
+    wait.setAttribute("class", "wait");
+    wait.innerHTML = "Retrieving information, please wait!";
+
+    tweetTable.appendChild(wait);
 }
 
 function handleData(data) {

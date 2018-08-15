@@ -45,6 +45,22 @@ app.get('/timeline.css', (request, response) => {
 	});
 });
 
+app.get('/wait.css', (request, response) => {
+	response.set('Content-Type', 'text/css');
+	fs.readFile('./src/css/wait.css', function (err, styles) {
+	    if (err) throw err;
+   		response.send(styles);
+	});
+});
+
+app.get('/error.css', (request, response) => {
+	response.set('Content-Type', 'text/css');
+	fs.readFile('./src/css/error.css', function (err, styles) {
+	    if (err) throw err;
+   		response.send(styles);
+	});
+});
+
 app.listen(port, hostname, () => {
 	console.log(`Server running at http://${hostname}:${port}/`);
 });

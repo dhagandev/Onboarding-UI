@@ -1,12 +1,13 @@
 .tweetTable {
 	border: solid 1px;
 	width: 90%;
-	margin: 8px auto auto auto;
+	margin: 8px auto;
 }
 
 .tweetRow {
-	padding: 10px 0px 10px 0px;
-	width: 100%
+	padding: 10px 0px;
+	width: 100%;
+	border-bottom: 1px solid #d1d1d1;
 }
 
 .tweetRow:nth-child(odd) {
@@ -15,9 +16,6 @@
 
 .tweetRow:nth-child(even) {
 	background: #e9e9e9;
-	border: 1px solid #d1d1d1;
-	border-left: 0px;
-	border-right: 0px;
 }
 
 .userInfo {
@@ -25,6 +23,7 @@
 	display: inline-block;
 	width: 15%;
     vertical-align: middle;
+    margin: 6px;
 }
 
 .userName {
@@ -40,13 +39,11 @@
 
 .userImg {
 	border-radius: 50%;
-	margin: 10px 0px 4px 0px;
+	margin: 4px 0px;
 }
 
 .tweetInfo {
-	margin-left: auto;
 	display: inline-block;
-	width: auto;
     vertical-align: middle;
 }
 

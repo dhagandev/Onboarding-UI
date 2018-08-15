@@ -61,7 +61,6 @@ function waitMessage() {
 }
 
 function handleData(data) {
-    console.log("Handling data");
     let dataObj = JSON.parse(data);
     let tweetTable = document.getElementsByClassName("tweetTable")[0];
     tweetTable.innerHTML = "";

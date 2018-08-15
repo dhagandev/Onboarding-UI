@@ -18,26 +18,22 @@ month[11] = "Dec";
 
 function getTimeline() {
     let xhttp = new XMLHttpRequest();
-    let tweetTable = document.getElementsByClassName("tweetTable")[0];
-    console.log(document.getElementsByClassName("tweetTable"));
+
+    let tweetTable = document.createElement("div");
+    tweetTable.setAttribute("class", "tweetTable");
+    document.body.appendChild(tweetTable);
 
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == xhttp.DONE) {
             if (xhttp.status == 200) {
-                if (tweetTable != null) {
-                    handleData(xhttp.responseText);
-                }
+                handleData(xhttp.responseText);
             }
             else {
-                if (tweetTable != null) {
-                    errorMessage();
-                }
+                errorMessage();
             }
         }
         else {
-            if (tweetTable != null) {
-                waitMessage();
-            }
+            waitMessage();
         }
     }
 

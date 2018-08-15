@@ -6,29 +6,29 @@ const port = 9000;
 let app = express();
 
 app.get('/', (request, response) => {
-	response.set('Content-Type', 'text/html');
+    response.set('Content-Type', 'text/html');
     fs.readFile('./src/index.html', function (err, html) {
-	    if (err) throw err;
-   		response.send(html);
-	});
+        if (err) throw err;
+        response.send(html);
+    });
 });
 
 app.get('/js/data.js', (request, response) => {
-	response.set('Content-Type', 'text/javascript');
-	fs.readFile('./src/js/data.js', function (err, js) {
-	    if (err) throw err;
-   		response.send(js);
-	});
+    response.set('Content-Type', 'text/javascript');
+    fs.readFile('./src/js/data.js', function (err, js) {
+        if (err) throw err;
+        response.send(js);
+    });
 });
 
 app.get('/general.css', (request, response) => {
-	response.set('Content-Type', 'text/css');
-	fs.readFile('./src/css/general.css', function (err, styles) {
-	    if (err) throw err;
-   		response.send(styles);
-	});
+    response.set('Content-Type', 'text/css');
+    fs.readFile('./src/css/general.css', function (err, styles) {
+        if (err) throw err;
+        response.send(styles);
+    });
 });
 
 app.listen(port, hostname, () => {
-	console.log(`Server running at http://${hostname}:${port}/`);
+    console.log(`Server running at http://${hostname}:${port}/`);
 });

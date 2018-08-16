@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const connect = require('gulp-connect');
 const exec = require('child_process').exec;
 
 gulp.task('hello', function() {
@@ -6,6 +7,8 @@ gulp.task('hello', function() {
 });
 
 gulp.task('dev', function() {
-	exec('node install');
-	exec('node src/js/main.js');
+	connect.server({
+		root: ['src', 'src/css'],
+		port: 9000
+	});
 });

@@ -7,7 +7,7 @@ gulp.task('hello', function() {
 
 gulp.task('dev', function() {
 	connect.server({
-		root: ['src', 'src/css'],
+		root: 'src',
 		port: 9000
 	});
 });

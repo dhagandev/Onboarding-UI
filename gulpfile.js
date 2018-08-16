@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const connect = require('gulp-connect');
-const exec = require('child_process').exec;
 
 gulp.task('hello', function() {
 	console.log("Hello World!");

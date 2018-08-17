@@ -1,10 +1,3 @@
-$defaultFontFamily: 'Times';
-$defaultSize: 12px;
-$defaultWeight: "normal";
-$defaultStyle: "normal";
-$defaultColor: "#000000";
-$defaultTextAlign: "left";
-
 @mixin margins($values...) {    
     @each $var in $values {
         margin: #{$var};
@@ -12,16 +5,33 @@ $defaultTextAlign: "left";
 }
 
 @mixin font($family, $size, $weight, $style, $color, $textAlign) {
-    font-family: $family;
-    font-size: $size;
-    font-weight: $weight;
-    font-style: $style;
-    color: $color;
-    text-align: $textAlign;
+    @if ($family != false) {
+        font-family: $family;
+    }
+
+    @if ($size != false) {
+        font-size: $size;
+    }
+
+    @if ($weight != false) {
+        font-weight: $weight;
+    }
+
+    @if ($style != false) {
+        font-style: $style;
+    }
+
+    @if ($color != false) {
+        color: $color;
+    }
+
+    @if ($textAlign != false) {
+        text-align: $textAlign;
+    }
 }
 
 .button {
-    @include font($defaultFontFamily, 16px, $defaultWeight, $defaultStyle, $defaultColor, center);
+    @include font(false, 16px, false, false, false, center);
     margin: 2px;
     line-height: 20px;
 }
@@ -31,7 +41,7 @@ $defaultTextAlign: "left";
     width: 90%;
 
     #labHeader {
-        @include font('Verdana', 40pt, bold, $defaultStyle, $defaultColor, center);
+        @include font('Verdana', 40pt, bold, false, false, center);
         margin-top: 2px;
     }
 
@@ -48,11 +58,11 @@ $defaultTextAlign: "left";
     width: 90%;
 
     .wait {
-        @include font($defaultFontFamily, 24px, $defaultWeight, italic, $defaultColor, center);
+        @include font(false, 24px, false, italic, false, center);
     }
 
     .error {
-        @include font($defaultFontFamily, 24px, $defaultWeight, $defaultStyle, #ff0000, center);
+        @include font(false, 24px, false, false, #ff0000, center);
     }
 
     .tweetRow:nth-child(odd) {
@@ -75,7 +85,7 @@ $defaultTextAlign: "left";
             vertical-align: middle;
 
             .userName {
-                @include font($defaultFontFamily, 15px, bold, $defaultStyle, $defaultColor, $defaultTextAlign);
+                @include font(false, 15px, bold, false, false, false);
                 margin-bottom: 5px;
             }
 
@@ -96,7 +106,7 @@ $defaultTextAlign: "left";
             width: 85%;
 
             .date {
-                @include font($defaultFontFamily, 12px, $defaultWeight, italic, $defaultColor, $defaultTextAlign);
+                @include font(false, 12px, false, italic, false, false);
                 margin-bottom: 5px;
             }
 

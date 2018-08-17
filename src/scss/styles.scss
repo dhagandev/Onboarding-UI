@@ -1,10 +1,17 @@
+$defaultFontFamily: 'Times';
+$defaultSize: 12px;
+$defaultWeight: "normal";
+$defaultStyle: "normal";
+$defaultColor: "#000000";
+$defaultTextAlign: "left";
+
 @mixin margins($values...) {    
     @each $var in $values {
         margin: #{$var};
     }
 }
 
-@mixin font($family: "Times", $size: "12px", $weight: "normal", $style: "normal", $color: "#000000", $textAlign: "left") {
+@mixin font($family, $size, $weight, $style, $color, $textAlign) {
     font-family: $family;
     font-size: $size;
     font-weight: $weight;
@@ -14,8 +21,8 @@
 }
 
 .button {
+    @include font($defaultFontFamily, 16px, $defaultWeight, $defaultStyle, $defaultColor, center);
     margin: 2px;
-    @include font(false, 16px, false, false, false, center);
     line-height: 20px;
 }
 
@@ -24,8 +31,8 @@
     width: 90%;
 
     #labHeader {
+        @include font('Verdana', 40pt, bold, $defaultStyle, $defaultColor, center);
         margin-top: 2px;
-        @include font('Verdana', 40pt, bold, false, false, center);
     }
 
     #timelineButton {
@@ -41,11 +48,11 @@
     width: 90%;
 
     .wait {
-        @include font(false, 24px, false, italic, false, center);
+        @include font($defaultFontFamily, 24px, $defaultWeight, italic, $defaultColor, center);
     }
 
     .error {
-        @include font(false, 24px, false, false, #ff0000, center);
+        @include font($defaultFontFamily, 24px, $defaultWeight, $defaultStyle, #ff0000, center);
     }
 
     .tweetRow:nth-child(odd) {
@@ -68,6 +75,7 @@
             vertical-align: middle;
 
             .userName {
+                @include font($defaultFontFamily, 15px, bold, $defaultStyle, $defaultColor, $defaultTextAlign);
                 margin-bottom: 5px;
                 @include font(false, 15px, bold, false, false, false);
             }
@@ -89,8 +97,8 @@
             width: 85%;
 
             .date {
+                @include font($defaultFontFamily, 12px, $defaultWeight, italic, $defaultColor, $defaultTextAlign);
                 margin-bottom: 5px;
-                @include font(false, 12px, false, italic, false, false);
             }
 
             .message {

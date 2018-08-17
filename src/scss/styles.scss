@@ -14,7 +14,7 @@
 }
 
 .button {
-    @include margins(2px 2px);
+    @include margins(2px);
     @include font(false, 16px, false, false, false, center);
     line-height: 20px;
 }

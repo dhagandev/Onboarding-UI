@@ -14,16 +14,6 @@
     }
 }
 
-@mixin fontFamWeight($family, $weight) {
-    @if ($family != false) {
-        font-family: $family;
-    }
-
-    @if ($weight != false) {
-        font-weight: $weight;
-    }
-}
-
 .button {
     @include fontSizeAlign(16px, center);
     margin: 2px;
@@ -36,7 +26,7 @@
 
     #labHeader {
         @include fontSizeAlign(40pt, center);
-        @include fontFamWeight('Verdana', bold);
+        font-weight: bold;
         margin-top: 2px;
     }
 

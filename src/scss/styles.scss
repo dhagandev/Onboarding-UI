@@ -4,25 +4,9 @@
     }
 }
 
-@mixin font($family, $size, $weight, $style, $color, $textAlign) {
-    @if ($family != false) {
-        font-family: $family;
-    }
-
+@mixin fontSizeAlign($size, $textAlign) {
     @if ($size != false) {
         font-size: $size;
-    }
-
-    @if ($weight != false) {
-        font-weight: $weight;
-    }
-
-    @if ($style != false) {
-        font-style: $style;
-    }
-
-    @if ($color != false) {
-        color: $color;
     }
 
     @if ($textAlign != false) {
@@ -30,8 +14,18 @@
     }
 }
 
+@mixin fontFamWeight($family, $weight) {
+    @if ($family != false) {
+        font-family: $family;
+    }
+
+    @if ($weight != false) {
+        font-weight: $weight;
+    }
+}
+
 .button {
-    @include font(false, 16px, false, false, false, center);
+    @include fontSizeAlign(16px, center);
     margin: 2px;
     line-height: 20px;
 }
@@ -41,7 +35,8 @@
     width: 90%;
 
     #labHeader {
-        @include font('Verdana', 40pt, bold, false, false, center);
+        @include fontSizeAlign(40pt, center);
+        @include fontFamWeight('Verdana', bold);
         margin-top: 2px;
     }
 
@@ -58,11 +53,13 @@
     width: 90%;
 
     .wait {
-        @include font(false, 24px, false, italic, false, center);
+        @include fontSizeAlign(24px, center);
+        font-style: italic;
     }
 
     .error {
-        @include font(false, 24px, false, false, #ff0000, center);
+        @include fontSizeAlign(24px, center);
+        font-color: #ff0000;
     }
 
     .tweetRow:nth-child(odd) {
@@ -85,7 +82,8 @@
             vertical-align: middle;
 
             .userName {
-                @include font(false, 15px, bold, false, false, false);
+                font-size: 15px;
+                font-weight: bold;
                 margin-bottom: 5px;
             }
 
@@ -106,7 +104,8 @@
             width: 85%;
 
             .date {
-                @include font(false, 12px, false, italic, false, false);
+                font-size: 12px;
+                font-style: italic;
                 margin-bottom: 5px;
             }
 

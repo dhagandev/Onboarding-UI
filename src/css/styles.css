@@ -1,0 +1,86 @@
+.button {
+  margin: 2px 2px;
+  font-family: false;
+  font-size: 16px;
+  font-weight: false;
+  font-style: false;
+  color: false;
+  text-align: center;
+  line-height: 20px; }
+
+.header {
+  margin: auto;
+  width: 90%; }
+  .header #labHeader {
+    margin: 2px 0px 0px;
+    font-family: "Verdana";
+    font-size: 40pt;
+    font-weight: bold;
+    font-style: false;
+    color: false;
+    text-align: center; }
+  .header #timelineButton {
+    width: 110px;
+    position: relative;
+    left: calc(100% - 110px); }
+
+.tweetTable {
+  margin: 8px auto;
+  border: solid 1px;
+  width: 90%; }
+  .tweetTable .wait {
+    font-family: false;
+    font-size: 24px;
+    font-weight: false;
+    font-style: italic;
+    color: false;
+    text-align: center; }
+  .tweetTable .error {
+    font-family: false;
+    font-size: 24px;
+    font-weight: false;
+    font-style: false;
+    color: #ff0000;
+    text-align: center; }
+  .tweetTable .tweetRow:nth-child(odd) {
+    background: #e8f5fd; }
+  .tweetTable .tweetRow:nth-child(even) {
+    background: #e9e9e9; }
+  .tweetTable .tweetRow {
+    padding: 10px 0px;
+    width: 100%;
+    border-bottom: 1px solid #d1d1d1; }
+    .tweetTable .tweetRow .userInfo {
+      text-align: center;
+      display: inline-block;
+      width: 15%;
+      vertical-align: middle; }
+      .tweetTable .tweetRow .userInfo .userName {
+        margin: 0px 0px 5px;
+        font-family: false;
+        font-size: 15px;
+        font-weight: bold;
+        font-style: false;
+        color: false;
+        text-align: false; }
+      .tweetTable .tweetRow .userInfo .userHandle {
+        margin: 0px 0px 5px;
+        font-size: 10px; }
+      .tweetTable .tweetRow .userInfo .userImg {
+        margin: 10px 0px 4px;
+        border-radius: 50%; }
+    .tweetTable .tweetRow .tweetInfo {
+      display: inline-block;
+      vertical-align: middle;
+      width: 85%; }
+      .tweetTable .tweetRow .tweetInfo .date {
+        margin: 0px 0px 5px;
+        font-family: false;
+        font-size: 12px;
+        font-weight: false;
+        font-style: italic;
+        color: false;
+        text-align: false; }
+      .tweetTable .tweetRow .tweetInfo .message {
+        margin: 4px 0px 0px;
+        font-size: 16px; }

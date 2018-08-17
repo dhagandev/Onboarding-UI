@@ -21,9 +21,9 @@ app.get('/js/data.js', (request, response) => {
     });
 });
 
-app.get('/general.css', (request, response) => {
+app.get('/styles.css', (request, response) => {
     response.set('Content-Type', 'text/css');
-    fs.readFile('./src/css/general.css', function (err, styles) {
+    fs.readFile('./src/css/styles.css', function (err, styles) {
         if (err) throw err;
         response.send(styles);
     });

@@ -6,6 +6,7 @@
         "express": "~3.4.4",
         "gulp": "^3.9.1",
         "gulp-connect": "5.5.0",
+        "gulp-sass": "^4.0.1",
         "xmlhttprequest": "^1.8.0"
     }
 }

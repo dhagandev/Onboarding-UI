@@ -1,0 +1,102 @@
+@mixin margins($values...) {    
+    @each $var in $values {
+        margin: #{$var};
+    }
+}
+
+@mixin font($family: "Times", $size: "12px", $weight: "normal", $style: "normal", $color: "#000000", $textAlign: "left") {
+    font-family: $family;
+    font-size: $size;
+    font-weight: $weight;
+    font-style: $style;
+    color: $color;
+    text-align: $textAlign;
+}
+
+.button {
+    @include margins(2px 2px);
+    @include font(false, 16px, false, false, false, center);
+    line-height: 20px;
+}
+
+.header {
+    @include margins(auto);
+    width: 90%;
+
+    #labHeader {
+        @include margins(2px 0px 0px);
+        @include font('Verdana', 40pt, bold, false, false, center);
+    }
+
+    #timelineButton {
+        width: 110px;
+        position: relative;
+        left: calc(100% - 110px);
+    }
+}
+
+.tweetTable {
+    @include margins(8px auto);
+    border: solid 1px;
+    width: 90%;
+
+    .wait {
+        @include font(false, 24px, false, italic, false, center);
+    }
+
+    .error {
+        @include font(false, 24px, false, false, #ff0000, center);
+    }
+
+    .tweetRow:nth-child(odd) {
+        background: #e8f5fd;
+    }
+
+    .tweetRow:nth-child(even) {
+        background: #e9e9e9;
+    }
+
+    .tweetRow {
+        padding: 10px 0px;
+        width: 100%;
+        border-bottom: 1px solid #d1d1d1;
+
+        .userInfo {
+            text-align: center;
+            display: inline-block;
+            width: 15%;
+            vertical-align: middle;
+
+            .userName {
+                @include margins(0px 0px 5px);
+                @include font(false, 15px, bold, false, false, false);
+            }
+
+            .userHandle {
+                @include margins(0px 0px 5px);
+                font-size: 10px;
+            }
+
+            .userImg {
+                @include margins(10px 0px 4px);
+                border-radius: 50%;
+            }
+        }
+
+        .tweetInfo {
+            display: inline-block;
+            vertical-align: middle;
+            width: 85%;
+
+            .date {
+                @include margins(0px 0px 5px);
+                @include font(false, 12px, false, italic, false, false);
+            }
+
+            .message {
+                @include margins(4px 0px 0px);
+                font-size: 16px;
+            }
+        }
+    }
+}

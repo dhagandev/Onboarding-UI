@@ -14,17 +14,17 @@
 }
 
 .button {
-    @include margins(2px);
+    margin: 2px;
     @include font(false, 16px, false, false, false, center);
     line-height: 20px;
 }
 
 .header {
-    @include margins(auto);
+    margin: auto;
     width: 90%;
 
     #labHeader {
-        @include margins(2px 0px 0px);
+        margin-top: 2px;
         @include font('Verdana', 40pt, bold, false, false, center);
     }
 
@@ -68,12 +68,12 @@
             vertical-align: middle;
 
             .userName {
-                @include margins(0px 0px 5px);
+                margin-bottom: 5px;
                 @include font(false, 15px, bold, false, false, false);
             }
 
             .userHandle {
-                @include margins(0px 0px 5px);
+                margin-bottom: 5px;
                 font-size: 10px;
             }
 
@@ -89,12 +89,12 @@
             width: 85%;
 
             .date {
-                @include margins(0px 0px 5px);
+                margin-bottom: 5px;
                 @include font(false, 12px, false, italic, false, false);
             }
 
             .message {
-                @include margins(4px 0px 0px);
+                margin-top: 4px;
                 font-size: 16px;
             }
         }

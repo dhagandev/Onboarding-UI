@@ -77,7 +77,6 @@ $defaultTextAlign: "left";
             .userName {
                 @include font($defaultFontFamily, 15px, bold, $defaultStyle, $defaultColor, $defaultTextAlign);
                 margin-bottom: 5px;
-                @include font(false, 15px, bold, false, false, false);
             }
 
             .userHandle {

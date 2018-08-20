@@ -49,7 +49,7 @@
 
     .error {
         @include fontSizeAlign(24px, center);
-        font-color: #ff0000;
+        color: #ff0000;
     }
 
     .tweetRow:nth-child(odd) {

@@ -1,5 +1,5 @@
-const fs = require('fs');
-const express = require('express');
+import fs from 'fs';
+import express from 'express';
 const hostname = '127.0.0.1';
 const port = 9000;
 

@@ -2,21 +2,9 @@ const serverHostname = 'localhost';
 const serverPort = 8080;
 const timelinePath = 'api/1.0/twitter/timeline';
 
-const month = new Array();
-month[0] = "Jan";
-month[1] = "Feb";
-month[2] = "Mar";
-month[3] = "Apr";
-month[4] = "May";
-month[5] = "Jun";
-month[6] = "Jul";
-month[7] = "Aug";
-month[8] = "Sep";
-month[9] = "Oct";
-month[10] = "Nov";
-month[11] = "Dec";
+const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-function getTimeline() {
+const getTimeline = () => {
     let xhttp = new XMLHttpRequest();
 
     if (document.getElementsByClassName("tweetTable").length == 0) {
@@ -25,7 +13,7 @@ function getTimeline() {
         document.body.appendChild(tweetTable);
     }
 
-    xhttp.onreadystatechange = function () {
+    xhttp.onreadystatechange = () => {
         if (xhttp.readyState == xhttp.DONE) {
             if (xhttp.status == 200) {
                 handleData(xhttp.responseText);
@@ -44,7 +32,7 @@ function getTimeline() {
 }
 
 
-function errorMessage() {
+const errorMessage = () => {
     let tweetTable = document.getElementsByClassName("tweetTable")[0];
     tweetTable.innerHTML = "";
 
@@ -55,7 +43,7 @@ function errorMessage() {
     tweetTable.appendChild(error);
 }
 
-function waitMessage() {
+const waitMessage = () => {
     let tweetTable = document.getElementsByClassName("tweetTable")[0];
     tweetTable.innerHTML = "";
 
@@ -66,16 +54,14 @@ function waitMessage() {
     tweetTable.appendChild(wait);
 }
 
-function handleData(data) {
+const handleData = (data) => {
     let dataObj = JSON.parse(data);
     let tweetTable = document.getElementsByClassName("tweetTable")[0];
     tweetTable.innerHTML = "";
 
-    for (i = 0; i < dataObj.length; i++) {
+    dataObj.forEach((obj) => {
         let tweetRow = document.createElement("div");
         tweetRow.setAttribute("class", "tweetRow");
-
-        let obj = dataObj[i];
         let user = obj.user;
         
         let userInfo = createUser(user);
@@ -85,11 +71,10 @@ function handleData(data) {
         tweetRow.appendChild(tweetInfo);
 
         tweetTable.appendChild(tweetRow);
-    }
-
+    });
 }
 
-function createUser(user) {
+const createUser = (user) => {
     let userInfo = document.createElement("div");
     userInfo.setAttribute("class", "userInfo");
 
@@ -112,12 +97,12 @@ function createUser(user) {
     return userInfo;
 }
 
-function createTweet(obj) {
+const createTweet = (obj) => {
     let tweetInfo = document.createElement("div");
     tweetInfo.setAttribute("class", "tweetInfo");
 
     let fullDate = new Date(obj.createdAt);
-    let parsedDate = month[fullDate.getMonth()] + " " + fullDate.getDate();
+    let parsedDate = month[fullDate.getMonth()].substring(0, 3) + " " + fullDate.getDate();
     let date = document.createElement("div");
     date.setAttribute("class", "date");
     date.innerHTML = parsedDate;

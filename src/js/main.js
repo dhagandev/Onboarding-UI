@@ -7,7 +7,7 @@ let app = express();
 
 app.get('/', (request, response) => {
     response.set('Content-Type', 'text/html');
-    fs.readFile('./src/index.html', function (err, html) {
+    fs.readFile('./src/index.html', (err, html) => {
         if (err) throw err;
         response.send(html);
     });
@@ -15,7 +15,7 @@ app.get('/', (request, response) => {
 
 app.get('/js/data.js', (request, response) => {
     response.set('Content-Type', 'text/javascript');
-    fs.readFile('./src/js/data.js', function (err, js) {
+    fs.readFile('./src/js/data.js', (err, js) => {
         if (err) throw err;
         response.send(js);
     });
@@ -23,7 +23,7 @@ app.get('/js/data.js', (request, response) => {
 
 app.get('/styles.css', (request, response) => {
     response.set('Content-Type', 'text/css');
-    fs.readFile('./src/css/styles.css', function (err, styles) {
+    fs.readFile('./src/css/styles.css', (err, styles) => {
         if (err) throw err;
         response.send(styles);
     });

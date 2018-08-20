@@ -8,8 +8,6 @@
         "gulp-connect": "5.5.0",
         "gulp-sass": "^4.0.1",
         "xmlhttprequest": "^1.8.0",
-        "react": "16.4.2",
-        "react-dom": "16.4.2",
         "babelify": "^7.3.0",
         "browserify": "^16.1.0"
     },

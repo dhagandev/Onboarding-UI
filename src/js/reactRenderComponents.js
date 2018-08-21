@@ -1,4 +1,4 @@
-function run() {
+const run = () => {
     ReactDOM.render(
         React.createElement(HelloComponent),
         document.getElementById("reactComponent")

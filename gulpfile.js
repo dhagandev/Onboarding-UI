@@ -1,14 +1,16 @@
 const gulp = require('gulp');
 const connect = require('gulp-connect');
-// const exec = require('child_process').exec;
+const browserify = require('browserify');
+const babelify = require('babelify');
+const log = require('fancy-log');
 const sass = require('gulp-sass');
+const source = require('vinyl-source-stream');
 
 gulp.task('hello', function() {
     console.log("Hello World!");
 });
 
 gulp.task('server', function() {
-    // exec('gulp sass');
     connect.server({
         root: 'src',
         port: 9000
@@ -24,7 +26,7 @@ gulp.task('sass', function() {
 function bundle(b) {
 	return b.bundle()
 			.on('error', function (err) {
-				gutil.log(err.toString());
+				log(err.toString());
 				this.emit('end');
 			})
 			.pipe(source('bundle.js'))
@@ -48,7 +50,7 @@ gulp.task('js', function() {
 		.transform(babelify)
 		.bundle()
 		.on('error', function (err) {
-			gutil.log(err.toString());
+			log(err.toString());
 			this.emit('end');
 		})
 		.pipe(source('bundle.js'))
@@ -56,4 +58,4 @@ gulp.task('js', function() {
 		.pipe(connect.reload());
 });
 
-gulp.task('dev', ['sass', 'server']);
+gulp.task('dev', ['js', 'sass', 'server']);

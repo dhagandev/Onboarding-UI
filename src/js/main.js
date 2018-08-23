@@ -10,6 +10,6 @@ window.onload = () => {
     if (timelineBtn != null) {
         timelineButton.onclick = () => getTimeline();
     }
-    window.onload = run();
+    run();
     getTimeline();
 }

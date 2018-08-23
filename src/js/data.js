@@ -5,7 +5,6 @@ const timelinePath = 'api/1.0/twitter/timeline';
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 exports.getTimeline = () => {
-    console.log("timeline is called");
     let xhttp = new XMLHttpRequest();
 
     if (document.getElementsByClassName("tweetTable").length == 0) {

@@ -10,7 +10,6 @@ window.onload = () => {
     if (timelineBtn != null) {
         timelineButton.onclick = () => data.getTimeline();
     }
-    console.log(timelineBtn);
     window.onload = reactRenderComponents.run();
     data.getTimeline();
 }

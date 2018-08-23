@@ -7,3 +7,5 @@ class HelloComponent extends React.Component {
         );
     }
 }
+
+module.exports = HelloComponent;

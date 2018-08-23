@@ -1,5 +1,5 @@
-const data = require('./data.js');
-const reactRenderComponents = require('./reactRenderComponents.js');
+import {getTimeline} from './data.js';
+import {run} from './reactRenderComponents.js';
 const hostname = '127.0.0.1';
 const port = 9000;
 
@@ -8,8 +8,8 @@ console.log(`Server running at http://${hostname}:${port}/`);
 window.onload = () => {
     let timelineBtn = document.getElementById("timelineButton");
     if (timelineBtn != null) {
-        timelineButton.onclick = () => data.getTimeline();
+        timelineButton.onclick = () => getTimeline();
     }
-    window.onload = reactRenderComponents.run();
-    data.getTimeline();
+    window.onload = run();
+    getTimeline();
 }

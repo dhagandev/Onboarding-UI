@@ -1,4 +1,6 @@
-class HelloComponent extends React.Component {
+import React from 'react';
+
+export class HelloComponent extends React.Component {
     render() {
         return React.createElement(
           "div",
@@ -7,5 +9,3 @@ class HelloComponent extends React.Component {
         );
     }
 }
-
-module.exports = HelloComponent;

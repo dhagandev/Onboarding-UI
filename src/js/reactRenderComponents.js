@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 export const run = () => {
     ReactDOM.render(
-        [React.createElement(HeaderComponent), React.createElement(TimelineTableComponent)],
+        [React.createElement(HeaderComponent, {key: "headerComponent"}, null), React.createElement(TimelineTableComponent, {key: "timelineTableComponent"}, null)],
         document.getElementById("reactBody")
     );
 }

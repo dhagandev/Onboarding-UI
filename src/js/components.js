@@ -1,5 +1,8 @@
 import React from 'react';
 
+const serverHostname = 'localhost';
+const serverPort = 8080;
+const timelinePath = 'api/1.0/twitter/timeline';
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const create = React.createElement;
@@ -8,16 +11,20 @@ export class HeaderComponent extends React.Component {
     render() {
         return create(
             "div",
-            {className: "header"},
+            {key: "header", className: "header"},
             [
                 create(
                     "div",
-                    {id: "labHeader"},
+                    {key: "labHeader", id: "labHeader"},
                     "Lab for Dana"
                 ),
                 create(
                     "button",
-                    {id: "timelineButton", className: "button"},
+                    {
+                        key: "timelineButton",
+                        id: "timelineButton", 
+                        className: "button"
+                    },
                     "Get Timeline"
                 )
             ]
@@ -35,7 +42,8 @@ export class TimelineTableComponent extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8080/api/1.0/twitter/timeline")
+        let apiUrl = "http://" + serverHostname + ":" + serverPort + "/" + timelinePath;
+        fetch(apiUrl)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -57,29 +65,26 @@ export class TimelineTableComponent extends React.Component {
         let error = this.state.error;
         let data = this.state.data;
         let returnElement = null;
-        console.log(data);
 
         if (error == null && data == null) {
-            returnElement = create(WaitComponent);
+            returnElement = create(WaitComponent, {key: "waitComponent"}, null);
         }
 
         if (error != null) {
-            returnElement = create(ErrorComponent)
+            returnElement = create(ErrorComponent, {key: "errorComponent"}, null)
         }
 
         if (data != null) {
             let tweetElements = [];
-            data.forEach((obj) => {
+            data.forEach((obj, index) => {
                 tweetElements.push(
-                    create(TweetComponent, {tweet: obj}, null)
+                    create(TweetComponent, {key: "tweetComponent" + index, index: index, tweet: obj}, null)
                 );
             });
 
 
             returnElement = tweetElements;
         }
-        console.log("returnElement");
-        console.log(returnElement);
         
         return create(
             "div",
@@ -113,10 +118,13 @@ class TweetComponent extends React.Component {
     render() {
         return create(
             "div",
-            {className: "tweetRow"},
+            {
+                key: "tweetRow" + this.props.index,
+                className: "tweetRow"
+            },
             [
-                create(UserInfoComponent, {user: this.props.tweet.user}, null),
-                create(TweetInfoComponent, {tweet: this.props.tweet}, null)
+                create(UserInfoComponent, {key: "userInfoComponent" + this.props.index, index: this.props.index, user: this.props.tweet.user}, null),
+                create(TweetInfoComponent, {key: "tweetInfoComponent" + this.props.index, index: this.props.index, tweet: this.props.tweet}, null)
             ]
         )
     }
@@ -126,20 +134,33 @@ class UserInfoComponent extends React.Component {
     render() {
         return create(
             "div",
-            {className: "userInfo"},
+            {
+                key: "userInfo" + this.props.index,
+                className: "userInfo"
+            },
             [
                 create(
                     "img",
-                    {className: "userImg", src: this.props.user.profileImageUrl}
+                    {
+                        key: "userImg" + this.props.index,
+                        className: "userImg", 
+                        src: this.props.user.profileImageUrl
+                    }
                 ),
                 create(
                     "div",
-                    {className: "userName"},
+                    {
+                        key: "userName" + this.props.index,
+                        className: "userName"
+                    },
                     this.props.user.name
                 ),
                 create(
                     "div",
-                    {className: "userHandle"},
+                    {
+                        key: "userHandle" + this.props.index,
+                        className: "userHandle"
+                    },
                     this.props.user.twitterHandle
                 )
             ]
@@ -154,19 +175,32 @@ class TweetInfoComponent extends React.Component {
 
         return create(
             "div",
-            {className: "tweetInfo"},
+            {
+                key: "tweetInfo" + this.props.index,    
+                className: "tweetInfo"
+            },
             [
                 create(
                     "div",
-                    {className: "date"},
+                    {
+                        key: "date" + this.props.index,
+                        className: "date"
+                    },
                     dateToShow
                 ),
                 create(
                     "a",
-                    {href: this.props.tweet.link, target: "_blank"},
+                    {
+                        key: "link" + this.props.index,
+                        href: this.props.tweet.link, 
+                        target: "_blank"
+                    },
                     create(
                         "div",
-                        {className: "message"},
+                        {
+                            key: "message" + this.props.index,
+                            className: "message"
+                        },
                         this.props.tweet.message
                     )
                 )

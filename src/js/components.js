@@ -25,7 +25,7 @@ export class HeaderComponent extends React.Component {
     }
 }
 
-export class TimelineComponent extends React.Component {
+export class TimelineTableComponent extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -56,97 +56,121 @@ export class TimelineComponent extends React.Component {
     render() {
         let error = this.state.error;
         let data = this.state.data;
-
         let returnElement = null;
-        console.log(this.state);
+        console.log(data);
 
         if (error == null && data == null) {
-            returnElement = create (
-                "div",
-                {className: "wait"},
-                "Retrieving information, please wait!"
-            )
+            returnElement = create(WaitComponent);
         }
 
         if (error != null) {
-            returnElement = create(
-                "div",
-                {className: "error"},
-                "An error has occurred. Please contact your administration."
-            )            
+            returnElement = create(ErrorComponent)
         }
 
         if (data != null) {
             let tweetElements = [];
             data.forEach((obj) => {
-                let user = obj.user;
-                let fullDate = new Date(obj.createdAt);
-                let dateToShow = month[fullDate.getMonth()].substring(0, 3) + " " + fullDate.getDate();
-                
                 tweetElements.push(
-                    create(
-                        "div",
-                        {className: "tweetRow"},
-                        [
-                            // User Info
-                            create(
-                                "div",
-                                {className: "userInfo"},
-                                [
-                                    //Image
-                                    create(
-                                        "img",
-                                        {className: "userImg", src: user.profileImageUrl}
-                                    ),
-                                    //Name
-                                    create(
-                                        "div",
-                                        {className: "userName"},
-                                        user.name
-                                    ),
-                                    //Handle
-                                    create(
-                                        "div",
-                                        {className: "userHandle"},
-                                        user.twitterHandle
-                                    )
-                                ]
-                            ),
-                            //Tweet Info
-                            create(
-                                "div",
-                                {className: "tweetInfo"},
-                                [
-                                    //Date
-                                    create(
-                                        "div",
-                                        {className: "date"},
-                                        dateToShow
-                                    ),
-                                    create(
-                                        "a",
-                                        {href: obj.link, target: "_blank"},
-                                        create(
-                                            "div",
-                                            {className: "message"},
-                                            obj.message
-                                        )
-                                    )
-                                ]
-                            )
-                        ]
-                    )
+                    create(TweetComponent, {tweet: obj}, null)
                 );
             });
 
+
             returnElement = tweetElements;
-            
         }
+        console.log("returnElement");
+        console.log(returnElement);
         
         return create(
             "div",
             {className: "tweetTable"},
             returnElement
+        );
+    }
+}
+
+class WaitComponent extends React.Component {
+    render() {
+        return create (
+            "div",
+            {className: "wait"},
+            "Retrieving information, please wait!"
+        );
+    }
+}
+
+class ErrorComponent extends React.Component {
+    render() {
+        return create(
+            "div",
+            {className: "error"},
+            "An error has occurred. Please contact your administration."
+        );
+    }
+}
+
+class TweetComponent extends React.Component {
+    render() {
+        return create(
+            "div",
+            {className: "tweetRow"},
+            [
+                create(UserInfoComponent, {user: this.props.tweet.user}, null),
+                create(TweetInfoComponent, {tweet: this.props.tweet}, null)
+            ]
+        )
+    }
+}
+
+class UserInfoComponent extends React.Component {
+    render() {
+        return create(
+            "div",
+            {className: "userInfo"},
+            [
+                create(
+                    "img",
+                    {className: "userImg", src: this.props.user.profileImageUrl}
+                ),
+                create(
+                    "div",
+                    {className: "userName"},
+                    this.props.user.name
+                ),
+                create(
+                    "div",
+                    {className: "userHandle"},
+                    this.props.user.twitterHandle
+                )
+            ]
+        );
+    }
+}
+
+class TweetInfoComponent extends React.Component {
+    render() {
+        let fullDate = new Date(this.props.tweet.createdAt);
+        let dateToShow = month[fullDate.getMonth()].substring(0, 3) + " " + fullDate.getDate();
+
+        return create(
+            "div",
+            {className: "tweetInfo"},
+            [
+                create(
+                    "div",
+                    {className: "date"},
+                    dateToShow
+                ),
+                create(
+                    "a",
+                    {href: this.props.tweet.link, target: "_blank"},
+                    create(
+                        "div",
+                        {className: "message"},
+                        this.props.tweet.message
+                    )
+                )
+            ]
         );
     }
 }

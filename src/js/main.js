@@ -8,8 +8,8 @@ console.log(`Server running at http://${hostname}:${port}/`);
 window.onload = () => {
     let timelineBtn = document.getElementById("timelineButton");
     if (timelineBtn != null) {
-        timelineButton.onclick = () => getTimeline();
+        //timelineButton.onclick = () => getTimeline();
     }
     run();
-    getTimeline();
+    //getTimeline();
 }

@@ -1,10 +1,10 @@
-import {HelloComponent} from './hello.js';
+import {HeaderComponent, TimelineComponent} from './components.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 export const run = () => {
     ReactDOM.render(
-        React.createElement(HelloComponent),
-        document.getElementById("reactComponent")
+        [React.createElement(HeaderComponent), React.createElement(TimelineComponent)],
+        document.getElementById("reactBody")
     );
 }

@@ -25,7 +25,6 @@ export class BodyComponent extends React.Component {
             data: null,
             error: null
         };
-        console.log(this.state);
     }
 
     componentDidMount() {
@@ -33,7 +32,6 @@ export class BodyComponent extends React.Component {
     }
 
     handler(e) {
-        console.log("Handler called");
         this.setState({
             data: null,
             error: null
@@ -43,7 +41,6 @@ export class BodyComponent extends React.Component {
     }
 
     apiCall() {
-        console.log("API called");
         let apiUrl = "http://" + serverHostname + ":" + serverPort + "/" + timelinePath;
         fetch(apiUrl)
             .then(res => res.json())
@@ -64,8 +61,6 @@ export class BodyComponent extends React.Component {
     }
 
     render() {
-        console.log("Body Render called");
-        console.log(this.state);
         return create(
             "div",
             {key: "body", className:"body"},
@@ -109,12 +104,8 @@ class TimelineTableComponent extends React.Component {
     }
 
     render() {
-        console.log("Timeline Table Render called");
         let error = this.state.error;
         let data = this.state.data;
-
-        console.log(error);
-        console.log(data);
         let returnElement = null;
 
         if (error == null && data == null) {

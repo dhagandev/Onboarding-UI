@@ -31,12 +31,11 @@ export class BodyComponent extends React.Component {
         this.apiCall();
     }
 
-    handler(e) {
+    handler() {
         this.setState({
             data: null,
             error: null
         });
-        e.preventDefault();
         this.apiCall();
     }
 
@@ -111,12 +110,10 @@ class TimelineTableComponent extends React.Component {
         if (error == null && data == null) {
             returnElement = create(WaitComponent, {key: "waitComponent"}, null);
         }
-
-        if (error != null) {
+        else if (error != null) {
             returnElement = create(ErrorComponent, {key: "errorComponent"}, null)
         }
-
-        if (data != null) {
+        else if (data != null) {
             let tweetElements = [];
             data.forEach((obj, index) => {
                 tweetElements.push(

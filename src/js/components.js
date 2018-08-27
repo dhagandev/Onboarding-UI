@@ -71,25 +71,9 @@ class ButtonComponent extends React.Component {
 }
 
 class TimelineTableComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: this.props.data,
-            error: this.props.error
-        }
-    }
-    componentWillReceiveProps(nextProps) {
-        this.setState(
-            {
-                data: nextProps.data,
-                error: nextProps.error
-            }
-        );  
-    }
-
     render() {
-        let error = this.state.error;
-        let data = this.state.data;
+        let error = this.props.error;
+        let data = this.props.data;
         let returnElement = null;
 
         if (error == null && data == null) {

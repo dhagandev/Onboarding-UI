@@ -17,27 +17,27 @@ export class HeaderComponent extends React.Component {
 export class BodyComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.handler = this.handler.bind(this);
+        this.onTimelineClickHandler = this.onTimelineClickHandler.bind(this);
         this.state = {
             data: null,
             error: null
         };
-        this.getApi = this.getApi.bind(this);
+        this.processApiCallResults = this.processApiCallResults.bind(this);
     }
 
     componentDidMount() {
-        apiCall(this.getApi);
+        apiCall(this.processApiCallResults);
     }
 
-    handler() {
+    onTimelineClickHandler() {
         this.setState({
             data: null,
             error: null
         });
-        apiCall(this.getApi);
+        apiCall(this.processApiCallResults);
     }
 
-    getApi(data, error) {
+    processApiCallResults(data, error) {
         this.setState({
             data: data,
             error: error
@@ -49,7 +49,7 @@ export class BodyComponent extends React.Component {
             "div",
             {key: "body", className:"body"},
             [
-                create(ButtonComponent, {key: "timelineButton", id: "timelineButton", handler: this.handler, buttonText: "Get Timeline"}),
+                create(ButtonComponent, {key: "timelineButton", id: "timelineButton", handler: this.onTimelineClickHandler, buttonText: "Get Timeline"}),
                 create(TimelineTableComponent, {key: "timelineTableComponent", data: this.state.data, error: this.state.error})
             ]
         );

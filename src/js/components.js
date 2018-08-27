@@ -64,8 +64,8 @@ export class BodyComponent extends React.Component {
             "div",
             {key: "body", className:"body"},
             [
-                create(ButtonComponent, {key: "timelineButton", id: "timelineButton", handler: this.handler, buttonText: "Get Timeline"}, null),
-                create(TimelineTableComponent, {key: "timelineTableComponent", data: this.state.data, error: this.state.error}, null)
+                create(ButtonComponent, {key: "timelineButton", id: "timelineButton", handler: this.handler, buttonText: "Get Timeline"}),
+                create(TimelineTableComponent, {key: "timelineTableComponent", data: this.state.data, error: this.state.error})
             ]
         );
     }
@@ -108,16 +108,16 @@ class TimelineTableComponent extends React.Component {
         let returnElement = null;
 
         if (error == null && data == null) {
-            returnElement = create(WaitComponent, {key: "waitComponent"}, null);
+            returnElement = create(WaitComponent, {key: "waitComponent"});
         }
         else if (error != null) {
-            returnElement = create(ErrorComponent, {key: "errorComponent"}, null)
+            returnElement = create(ErrorComponent, {key: "errorComponent"})
         }
         else if (data != null) {
             let tweetElements = [];
             data.forEach((obj, index) => {
                 tweetElements.push(
-                    create(TweetComponent, {key: "tweetComponent" + index, index: index, tweet: obj}, null)
+                    create(TweetComponent, {key: "tweetComponent" + index, index: index, tweet: obj})
                 );
             });
 
@@ -161,8 +161,8 @@ class TweetComponent extends React.Component {
                 className: "tweetRow"
             },
             [
-                create(UserInfoComponent, {key: "userInfoComponent" + this.props.index, index: this.props.index, user: this.props.tweet.user}, null),
-                create(TweetInfoComponent, {key: "tweetInfoComponent" + this.props.index, index: this.props.index, tweet: this.props.tweet}, null)
+                create(UserInfoComponent, {key: "userInfoComponent" + this.props.index, index: this.props.index, user: this.props.tweet.user}),
+                create(TweetInfoComponent, {key: "tweetInfoComponent" + this.props.index, index: this.props.index, tweet: this.props.tweet})
             ]
         )
     }

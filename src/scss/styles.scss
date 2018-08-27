@@ -43,11 +43,13 @@
         border: solid 1px;
 
         .wait {
+            @include margins(5px 0px);
             @include fontSizeAlign(24px, center);
             font-style: italic;
         }
 
         .error {
+            @include margins(5px 0px);
             @include fontSizeAlign(24px, center);
             color: #ff0000;
         }

@@ -1,8 +1,6 @@
 import React from 'react';
+import {apiCall} from './service.js'
 
-const serverHostname = 'localhost';
-const serverPort = 8080;
-const timelinePath = 'api/1.0/twitter/timeline';
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const create = React.createElement;
@@ -25,10 +23,11 @@ export class BodyComponent extends React.Component {
             data: null,
             error: null
         };
+        this.getApi = this.getApi.bind(this);
     }
 
     componentDidMount() {
-        this.apiCall();
+        apiCall(this.getApi);
     }
 
     handler() {
@@ -36,27 +35,14 @@ export class BodyComponent extends React.Component {
             data: null,
             error: null
         });
-        this.apiCall();
+        apiCall(this.getApi);
     }
 
-    apiCall() {
-        let apiUrl = "http://" + serverHostname + ":" + serverPort + "/" + timelinePath;
-        fetch(apiUrl)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        data: result,
-                        error: null
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        data: null,
-                        error: error
-                    });
-                }
-            );
+    getApi(data, error) {
+        this.setState({
+            data: data,
+            error: error
+        });
     }
 
     render() {

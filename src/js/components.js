@@ -2,7 +2,6 @@ import React from 'react';
 import {apiCall} from './service.js'
 
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
 const create = React.createElement;
 
 export class HeaderComponent extends React.Component {

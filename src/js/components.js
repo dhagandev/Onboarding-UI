@@ -12,36 +12,38 @@ export class HeaderComponent extends React.Component {
         return create(
             "div",
             {key: "header", className: "header"},
-            [
-                create(
-                    "div",
-                    {key: "labHeader", id: "labHeader"},
-                    "Lab for Dana"
-                ),
-                create(
-                    "button",
-                    {
-                        key: "timelineButton",
-                        id: "timelineButton", 
-                        className: "button"
-                    },
-                    "Get Timeline"
-                )
-            ]
+            "Lab for Dana"
         );
     }
 }
 
-export class TimelineTableComponent extends React.Component {
-    constructor() {
-        super()
+export class BodyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handler = this.handler.bind(this);
         this.state = {
             data: null,
             error: null
-        }
+        };
+        console.log(this.state);
     }
 
     componentDidMount() {
+        this.apiCall();
+    }
+
+    handler(e) {
+        console.log("Handler called");
+        this.setState({
+            data: null,
+            error: null
+        });
+        e.preventDefault();
+        this.apiCall();
+    }
+
+    apiCall() {
+        console.log("API called");
         let apiUrl = "http://" + serverHostname + ":" + serverPort + "/" + timelinePath;
         fetch(apiUrl)
             .then(res => res.json())
@@ -62,8 +64,57 @@ export class TimelineTableComponent extends React.Component {
     }
 
     render() {
+        console.log("Body Render called");
+        console.log(this.state);
+        return create(
+            "div",
+            {key: "body", className:"body"},
+            [
+                create(ButtonComponent, {key: "timelineButton", id: "timelineButton", handler: this.handler, buttonText: "Get Timeline"}, null),
+                create(TimelineTableComponent, {key: "timelineTableComponent", data: this.state.data, error: this.state.error}, null)
+            ]
+        );
+    }
+}
+
+class ButtonComponent extends React.Component {
+    render() {
+        return create(
+            "button",
+            {
+                id: this.props.id, 
+                onClick: this.props.handler,
+                className: "button"
+            },
+            this.props.buttonText
+        );
+    }
+}
+
+class TimelineTableComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: this.props.data,
+            error: this.props.error
+        }
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState(
+            {
+                data: nextProps.data,
+                error: nextProps.error
+            }
+        );  
+    }
+
+    render() {
+        console.log("Timeline Table Render called");
         let error = this.state.error;
         let data = this.state.data;
+
+        console.log(error);
+        console.log(data);
         let returnElement = null;
 
         if (error == null && data == null) {
@@ -81,7 +132,6 @@ export class TimelineTableComponent extends React.Component {
                     create(TweetComponent, {key: "tweetComponent" + index, index: index, tweet: obj}, null)
                 );
             });
-
 
             returnElement = tweetElements;
         }

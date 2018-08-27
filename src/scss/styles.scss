@@ -21,88 +21,90 @@
 }
 
 .header {
+    @include fontSizeAlign(40pt, center);
     margin: auto;
     width: 90%;
+    font-weight: bold;
+    margin-top: 2px;
+}
 
-    #labHeader {
-        @include fontSizeAlign(40pt, center);
-        font-weight: bold;
-        margin-top: 2px;
-    }
+.body {
+    width: 90%;
+    margin: auto;
 
     #timelineButton {
         width: 110px;
         position: relative;
         left: calc(100% - 110px);
     }
-}
 
-.tweetTable {
-    @include margins(8px auto);
-    border: solid 1px;
-    width: 90%;
+    .tweetTable {
+        @include margins(8px 0px);
+        border: solid 1px;
 
-    .wait {
-        @include fontSizeAlign(24px, center);
-        font-style: italic;
-    }
-
-    .error {
-        @include fontSizeAlign(24px, center);
-        color: #ff0000;
-    }
-
-    .tweetRow:nth-child(odd) {
-        background: #e8f5fd;
-    }
-
-    .tweetRow:nth-child(even) {
-        background: #e9e9e9;
-    }
-
-    .tweetRow {
-        padding: 10px 0px;
-        width: 100%;
-        border-bottom: 1px solid #d1d1d1;
-
-        .userInfo {
-            text-align: center;
-            display: inline-block;
-            width: 15%;
-            vertical-align: middle;
-
-            .userName {
-                font-size: 15px;
-                font-weight: bold;
-                margin-bottom: 5px;
-            }
-
-            .userHandle {
-                margin-bottom: 5px;
-                font-size: 10px;
-            }
-
-            .userImg {
-                @include margins(10px 0px 4px);
-                border-radius: 50%;
-            }
+        .wait {
+            @include fontSizeAlign(24px, center);
+            font-style: italic;
         }
 
-        .tweetInfo {
-            display: inline-block;
-            vertical-align: middle;
-            width: 85%;
+        .error {
+            @include fontSizeAlign(24px, center);
+            color: #ff0000;
+        }
 
-            .date {
-                font-size: 12px;
-                font-style: italic;
-                margin-bottom: 5px;
+        .tweetRow:nth-child(odd) {
+            background: #e8f5fd;
+        }
+
+        .tweetRow:nth-child(even) {
+            background: #e9e9e9;
+        }
+
+        .tweetRow {
+            padding: 10px 0px;
+            width: 100%;
+            border-bottom: 1px solid #d1d1d1;
+
+            .userInfo {
+                text-align: center;
+                display: inline-block;
+                width: 15%;
+                vertical-align: middle;
+
+                .userName {
+                    font-size: 15px;
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                }
+
+                .userHandle {
+                    margin-bottom: 5px;
+                    font-size: 10px;
+                }
+
+                .userImg {
+                    @include margins(10px 0px 4px);
+                    border-radius: 50%;
+                }
             }
 
-            .message {
-                margin-top: 4px;
-                font-size: 16px;
+            .tweetInfo {
+                display: inline-block;
+                vertical-align: middle;
+                width: 85%;
+
+                .date {
+                    font-size: 12px;
+                    font-style: italic;
+                    margin-bottom: 5px;
+                }
+
+                .message {
+                    margin-top: 4px;
+                    font-size: 16px;
+                }
             }
         }
     }
 }
+

@@ -2,6 +2,9 @@
     "name": "Onboarding-UI",
     "version": "0.0.1",
     "private": true,
+    "scripts": {
+        "test": "jest"
+    },
     "dependencies": {
         "babel-preset-env": "^1.7.0",
         "babelify": "^7.3.0",

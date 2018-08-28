@@ -1,5 +1,5 @@
 import React from 'react';
-import {apiCall} from './service.js'
+import {apiGetTimeline} from './service.js'
 
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const create = React.createElement;
@@ -18,15 +18,15 @@ export class BodyComponent extends React.Component {
     constructor(props) {
         super(props);
         this.onTimelineClickHandler = this.onTimelineClickHandler.bind(this);
+        this.processTimelineResults = this.processTimelineResults.bind(this);
         this.state = {
             data: null,
             error: null
         };
-        this.processApiCallResults = this.processApiCallResults.bind(this);
     }
 
     componentDidMount() {
-        apiCall(this.processApiCallResults);
+        apiGetTimeline(this.processTimelineResults);
     }
 
     onTimelineClickHandler() {
@@ -34,10 +34,10 @@ export class BodyComponent extends React.Component {
             data: null,
             error: null
         });
-        apiCall(this.processApiCallResults);
+        apiGetTimeline(this.processTimelineResults);
     }
 
-    processApiCallResults(data, error) {
+    processTimelineResults(data, error) {
         this.setState({
             data: data,
             error: error

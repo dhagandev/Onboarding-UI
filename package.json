@@ -5,6 +5,14 @@
     "scripts": {
         "test": "jest"
     },
+    "jest": {
+        "verbose": true,
+        "testURL": "http://localhost/",
+        "automock": false,
+        "setupFiles": [
+            "./src/js/testSetup.js"
+        ]
+    },
     "dependencies": {
         "babel-preset-env": "^1.7.0",
         "babelify": "^7.3.0",

@@ -1,15 +1,10 @@
-import {getTimeline} from './data.js';
-import {run} from './reactRenderComponents.js';
-const hostname = '127.0.0.1';
-const port = 9000;
-
-console.log(`Server running at http://${hostname}:${port}/`);
+import {HeaderComponent, BodyComponent} from './components.js';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 window.onload = () => {
-    let timelineBtn = document.getElementById("timelineButton");
-    if (timelineBtn != null) {
-        timelineButton.onclick = () => getTimeline();
-    }
-    run();
-    getTimeline();
+    ReactDOM.render(
+        [React.createElement(HeaderComponent, {key: "headerComponent"}), React.createElement(BodyComponent, {key: "bodyComponent"})],
+        document.getElementById("reactApp")
+    );
 }

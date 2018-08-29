@@ -13,8 +13,10 @@ gulp.task('hello', function() {
 
 // Creates the server and connects to a given root (host) and port
 gulp.task('server', function() {
+	gulp.src('./src/index.html')
+		.pipe(gulp.dest('./dist'));
     connect.server({
-        root: ['src', 'dist'],
+        root: 'dist',
         port: 9000
     });
 });
@@ -23,7 +25,7 @@ gulp.task('server', function() {
 gulp.task('sass', function() {
     return gulp.src('src/scss/styles.scss')
                .pipe(sass())
-               .pipe(gulp.dest('src/css'));
+               .pipe(gulp.dest('./dist/css'));
 })
 
 function bundle(b) {

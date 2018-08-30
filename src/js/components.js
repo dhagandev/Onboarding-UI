@@ -56,7 +56,7 @@ export class BodyComponent extends React.Component {
     }
 }
 
-class ButtonComponent extends React.Component {
+export class ButtonComponent extends React.Component {
     render() {
         return create(
             "button",
@@ -70,7 +70,7 @@ class ButtonComponent extends React.Component {
     }
 }
 
-class TimelineTableComponent extends React.Component {
+export class TimelineTableComponent extends React.Component {
     render() {
         let error = this.props.error;
         let data = this.props.data;
@@ -101,7 +101,7 @@ class TimelineTableComponent extends React.Component {
     }
 }
 
-class WaitComponent extends React.Component {
+export class WaitComponent extends React.Component {
     render() {
         return create (
             "div",
@@ -111,7 +111,7 @@ class WaitComponent extends React.Component {
     }
 }
 
-class ErrorComponent extends React.Component {
+export class ErrorComponent extends React.Component {
     render() {
         return create(
             "div",
@@ -121,7 +121,7 @@ class ErrorComponent extends React.Component {
     }
 }
 
-class TweetComponent extends React.Component {
+export class TweetComponent extends React.Component {
     render() {
         return create(
             "div",
@@ -137,7 +137,7 @@ class TweetComponent extends React.Component {
     }
 }
 
-class UserInfoComponent extends React.Component {
+export class UserInfoComponent extends React.Component {
     render() {
         return create(
             "div",
@@ -175,7 +175,7 @@ class UserInfoComponent extends React.Component {
     }
 }
 
-class TweetInfoComponent extends React.Component {
+export class TweetInfoComponent extends React.Component {
     render() {
         let fullDate = new Date(this.props.tweet.createdAt);
         let dateToShow = month[fullDate.getMonth()].substring(0, 3) + " " + fullDate.getDate();

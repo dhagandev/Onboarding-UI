@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import {apiGetTimeline} from './service.js'
 
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -18,7 +19,6 @@ export class BodyComponent extends React.Component {
     constructor(props) {
         super(props);
         this.onTimelineClickHandler = this.onTimelineClickHandler.bind(this);
-        this.processTimelineResults = this.processTimelineResults.bind(this);
         this.state = {
             data: null,
             error: null
@@ -26,18 +26,15 @@ export class BodyComponent extends React.Component {
     }
 
     componentDidMount() {
-        apiGetTimeline(this.processTimelineResults);
+        this.onTimelineClickHandler();
     }
 
     onTimelineClickHandler() {
-        this.setState({
-            data: null,
-            error: null
-        });
-        apiGetTimeline(this.processTimelineResults);
+        this.setStateVal(null, null);
+        apiGetTimeline().then(result => this.setStateVal(result, null)).catch(result => this.setStateVal(null, result));
     }
 
-    processTimelineResults(data, error) {
+    setStateVal(data, error) {
         this.setState({
             data: data,
             error: error
@@ -84,13 +81,9 @@ export class TimelineTableComponent extends React.Component {
         }
         else if (data != null) {
             let tweetElements = [];
-            data.forEach((obj, index) => {
-                tweetElements.push(
-                    create(TweetComponent, {key: "tweetComponent" + index, index: index, tweet: obj})
-                );
-            });
-
-            returnElement = tweetElements;
+            returnElement = _.map(data, (value, index) => {
+                                return create(TweetComponent, {key: "tweetComponent" + index, index: index, tweet: value});
+                            });
         }
         
         return create(

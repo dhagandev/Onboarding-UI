@@ -15,16 +15,10 @@ export class HeaderComponent extends React.Component {
     }
 }
 
-/*
-Thoughts:
-Pass in returnElement into TimelineTableComponent
-Use a Promise in BodyComponent to decide what the returnElement will be
-*/
 export class BodyComponent extends React.Component {
     constructor(props) {
         super(props);
         this.onTimelineClickHandler = this.onTimelineClickHandler.bind(this);
-        this.processTimelineResults = this.processTimelineResults.bind(this);
         this.state = {
             data: null,
             error: null
@@ -32,23 +26,18 @@ export class BodyComponent extends React.Component {
     }
 
     componentDidMount() {
-        apiGetTimeline(this.processTimelineResults);
+        this.onTimelineClickHandler();
     }
 
     onTimelineClickHandler() {
-        this.setState({
-            data: null,
-            error: null
-        });
-        apiGetTimeline(this.processTimelineResults);
+        this.setStateVal(null, null);
+        apiGetTimeline().then(result => this.setStateVal(result, null)).catch(result => this.setStateVal(null, result));
     }
 
-    processTimelineResults(data, error) {
-        return new Promise((resolve, reject) => {
-            this.setState({
-                data: data,
-                error: error
-            });
+    setStateVal(data, error) {
+        this.setState({
+            data: data,
+            error: error
         });
     }
 

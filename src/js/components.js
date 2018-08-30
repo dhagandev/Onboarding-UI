@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import {apiGetTimeline} from './service.js'
 
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -84,13 +85,9 @@ export class TimelineTableComponent extends React.Component {
         }
         else if (data != null) {
             let tweetElements = [];
-            data.forEach((obj, index) => {
-                tweetElements.push(
-                    create(TweetComponent, {key: "tweetComponent" + index, index: index, tweet: obj})
-                );
-            });
-
-            returnElement = tweetElements;
+            returnElement = _.map(data, (value, index) => {
+                                return create(TweetComponent, {key: "tweetComponent" + index, index: index, tweet: value});
+                            });
         }
         
         return create(
